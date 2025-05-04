@@ -2,3 +2,4 @@
 __pycache__/
 .env
 logs/
+resume_parser/raw_data/
