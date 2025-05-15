@@ -2,16 +2,16 @@
 It initializes the FastAPI application and includes the routers for the API endpoints.
 '''
 from fastapi import FastAPI
-from resume_parser.endpoints import ep_about, ep_parse_resume
+from resume_parser.endpoints import ep_parse_resume, ep_tools
 from utils.logging_utils import setup_logging
 import uvicorn
 
 # Create FastAPI app
-app = FastAPI(title="Resume API", description="API for parsing resumes from raw text", version="1.0.0")
+app = FastAPI(title="MCP API", description="API providing tools to parse resumes from raw text", version="1.0.0")
 
 # Include routers from endpoint modules
-app.include_router(ep_about.router, tags=["Greeting"])  # http://localhost:8000/about
-app.include_router(ep_parse_resume.router, tags=["Resume"])  # http://localhost:8000/parse_resume?resume_text=Jane%20Doe%20software%20engineer
+app.include_router(ep_tools.router)  # http://localhost:8000/mcp/tools
+app.include_router(ep_parse_resume.router, tags=["Resume"])  # http://localhost:8000/mcp/call/parse_resume?resume_text=Jane%20Doe%20software%20engineer
 
 # To run the app: uvicorn app.main:app --reload
 if __name__ == "__main__":
